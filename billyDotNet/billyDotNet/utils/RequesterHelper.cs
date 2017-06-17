@@ -6,12 +6,12 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace billyDotNet.utils
+namespace billyDotNet.Utils
 {
     public class RequesterHelper : IRequesterHelper
     {
 
-        private readonly string HTTP_REQUESTER_GET_METHOD = "Get";
+        
 
         /// <summary>
         /// Makes a get request with the provided variables
@@ -27,7 +27,7 @@ namespace billyDotNet.utils
 
             string completeUri = UriParameter.Length > 0 ? $"{destinationURL}{UriParameter}" : destinationURL;
             var httpWebRequest = WebRequest.Create(completeUri);
-            httpWebRequest.Method = HTTP_REQUESTER_GET_METHOD;
+            httpWebRequest.Method = WebRequestMethods.Http.Get;
             
 
             HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();

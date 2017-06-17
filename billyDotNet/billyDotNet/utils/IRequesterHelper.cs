@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace billyDotNet.utils
+namespace billyDotNet.Utils
 {
     /// <summary>
     /// Helper interface for requesters

@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using billyDotNet.utils;
+using billyDotNet.Utils;
 using System.Collections.Generic;
 
 namespace billyDotNet.Test.Integration
@@ -11,7 +11,6 @@ namespace billyDotNet.Test.Integration
         [TestMethod]
         public void TestGetResponse()
         {
-
             RequesterHelper requesterHelper = new RequesterHelper();
 
             Dictionary<string, string> dataObject = new Dictionary<string, string>()

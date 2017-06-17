@@ -42,12 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="billyRepository.cs" />
-    <Compile Include="billyService.cs" />
+    <Compile Include="Repository\BillyRepository.cs" />
+    <Compile Include="Service\BillyService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="utils\IRequesterHelper.cs" />
-    <Compile Include="utils\RequesterHelper.cs" />
+    <Compile Include="Utils\IRequesterHelper.cs" />
+    <Compile Include="Utils\RequesterHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace billyDotNet
 {
-    class billyRepository
+    class BillyService
     {
     }
 }
