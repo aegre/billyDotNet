@@ -38,8 +38,9 @@ namespace billyDotNet.Utils
             {
                 result = streamReader.ReadToEnd();
             }
-
+            
             //Return the fetched string 
+
             return result;
         }
 

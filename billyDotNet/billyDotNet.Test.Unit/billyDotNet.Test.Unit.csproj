@@ -55,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillyRepository_UT.cs" />
+    <Compile Include="BillyService_UT.cs" />
+    <Compile Include="DateHelper__UT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
