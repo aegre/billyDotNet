@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using billyDotNet.Utils;
 using System.Collections.Generic;
+using billyDotNet.Repository;
 
 namespace billyDotNet.Test.Unit
 {
@@ -10,10 +11,20 @@ namespace billyDotNet.Test.Unit
     public class BillyRepository_UT
     {
 
-        private static Mock<IRequesterHelper> requesterHelperMock = new Mock<IRequesterHelper>();
+        private IRequesterHelper requesterHelper;
 
+        private Mock<IRequesterHelper> requesterHelperMock;
 
-        private static IRequesterHelper requesterHelper = requesterHelperMock.Object;
+        private BillyRepository repository; 
+
+        [TestInitialize]
+        public void Setup()
+        {
+            requesterHelperMock = new Mock<IRequesterHelper>();
+            requesterHelper = requesterHelperMock.Object;
+
+            repository = new BillyRepository(requesterHelper);
+        }
 
         [TestMethod]
         public void VerifyGetBillsByDate()
@@ -25,7 +36,7 @@ namespace billyDotNet.Test.Unit
             requester.MakeGetRequest(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>())).Returns(expectedResult);
 
             //Get the result
-            string result = requesterHelper.MakeGetRequest("", new Dictionary<string, string>());
+            string result = repository.GetBillsByDate("", DateTime.Now, DateTime.Now);
 
             Assert.AreEqual(expectedResult, result);
 
