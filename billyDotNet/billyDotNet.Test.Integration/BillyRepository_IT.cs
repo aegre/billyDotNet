@@ -12,13 +12,19 @@ namespace billyDotNet.Test.Integration
     [TestClass]
     public class BillyRepository_IT
     {
+        private RequesterHelper requesterHelper;
+        private BillyRepository billyRepository;
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            requesterHelper = new RequesterHelper();
+            billyRepository = new BillyRepository(requesterHelper);
+    }
+
         [TestMethod]
         public void TestGetBillsByDate()
         {
-            RequesterHelper requesterHelper = new RequesterHelper();
-            BillyRepository billyRepository = new BillyRepository(requesterHelper);
-
-
             //Data object
             string id = "3fadd6a2-cee7-4b93-8763-f5402ce70d30";
             DateTime start = new DateTime(2017, 1, 1);

@@ -13,6 +13,7 @@ namespace billyDotNet.Test.Integration
         {
             RequesterHelper requesterHelper = new RequesterHelper();
 
+            //Data object
             Dictionary<string, string> dataObject = new Dictionary<string, string>()
             {
                 { "id", "3fadd6a2-cee7-4b93-8763-f5402ce70d30" },
@@ -21,6 +22,7 @@ namespace billyDotNet.Test.Integration
             };
             string destinationURL = @"http://34.209.24.195/facturas";
 
+            //Get the result
             string actual = requesterHelper.MakeGetRequest(destinationURL, dataObject);
 
             string expectedResult = "91";
