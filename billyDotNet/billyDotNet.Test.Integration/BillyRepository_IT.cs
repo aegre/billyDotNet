@@ -18,10 +18,14 @@ namespace billyDotNet.Test.Integration
             RequesterHelper requesterHelper = new RequesterHelper();
             BillyRepository billyRepository = new BillyRepository(requesterHelper);
 
+
+            //Data object
             string id = "3fadd6a2-cee7-4b93-8763-f5402ce70d30";
             DateTime start = new DateTime(2017, 1, 1);
             DateTime finish = new DateTime(2017, 1, 17);
 
+
+            //Get the result
             string actual = billyRepository.GetBillsByDate(id, start, finish);
 
             string expectedResult = "91";

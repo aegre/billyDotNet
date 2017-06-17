@@ -8,13 +8,19 @@ using System.Threading.Tasks;
 namespace billyDotNet.Repository
 {
     
-
-    public class BillyRepository
+    /// <summary>
+    /// Data repository
+    /// </summary>
+    public class BillyRepository : IBillyRepository
     {
         private IRequesterHelper requestHelper;
         private readonly string SERVICE_URL = @"http://34.209.24.195/facturas";
         private readonly string DATE_FORMAT = "yyyy-MM-dd";
 
+        /// <summary>
+        /// Creates a new instance of billyRepository
+        /// </summary>
+        /// <param name="requestHelper">Requester helper dependency injection </param>
         public BillyRepository(IRequesterHelper requestHelper)
         {
             this.requestHelper = requestHelper;

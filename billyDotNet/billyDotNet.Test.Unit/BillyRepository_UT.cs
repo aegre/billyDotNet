@@ -19,12 +19,17 @@ namespace billyDotNet.Test.Unit
         public void VerifyGetBillsByDate()
         {
             string expectedResult = "91";
+
+            //Setup the mock to return the expected result
             requesterHelperMock.Setup(requester =>
             requester.MakeGetRequest(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>())).Returns(expectedResult);
+
+            //Get the result
             string result = requesterHelper.MakeGetRequest("", new Dictionary<string, string>());
 
             Assert.AreEqual(expectedResult, result);
 
+            //Verify method call
             requesterHelperMock.Verify(x => x.MakeGetRequest(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>()), Times.Once);
 
         }
