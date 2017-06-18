@@ -10,9 +10,6 @@ namespace billyDotNet.Utils
 {
     public class RequesterHelper : IRequesterHelper
     {
-
-        
-
         /// <summary>
         /// Makes a get request with the provided variables
         /// </summary>
