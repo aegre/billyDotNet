@@ -1,6 +1,5 @@
-﻿using System;
+﻿using billyDotNet.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using billyDotNet.Utils;
 using System.Collections.Generic;
 
 namespace billyDotNet.Test.Integration
@@ -28,7 +27,6 @@ namespace billyDotNet.Test.Integration
             string expectedResult = "91";
 
             Assert.AreEqual(expectedResult, actual);
-
         }
     }
 }

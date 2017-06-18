@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace billyDotNet.Utils
 {
@@ -21,11 +18,9 @@ namespace billyDotNet.Utils
             //Build the query string parameters
             string UriParameter = BuildQueryString(getVariables);
 
-
             string completeUri = UriParameter.Length > 0 ? $"{destinationURL}{UriParameter}" : destinationURL;
             var httpWebRequest = WebRequest.Create(completeUri);
             httpWebRequest.Method = WebRequestMethods.Http.Get;
-            
 
             HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
             string result = string.Empty;
@@ -35,12 +30,11 @@ namespace billyDotNet.Utils
             {
                 result = streamReader.ReadToEnd();
             }
-            
-            //Return the fetched string 
+
+            //Return the fetched string
 
             return result;
         }
-
 
         /// <summary>
         /// Creates an string containing all the variables as a get string

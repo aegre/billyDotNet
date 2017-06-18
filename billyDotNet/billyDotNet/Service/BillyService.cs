@@ -3,9 +3,6 @@ using billyDotNet.Repository;
 using billyDotNet.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace billyDotNet
 {
@@ -22,12 +19,12 @@ namespace billyDotNet
             this.billyRepository = billyRepository;
         }
 
-         /// <summary>
-         /// Get the total count of bills by year
-         /// </summary>
-         /// <param name="year">The year</param>
-         /// <param name="id">Id to search</param>
-         /// <returns>The count of bills</returns>
+        /// <summary>
+        /// Get the total count of bills by year
+        /// </summary>
+        /// <param name="year">The year</param>
+        /// <param name="id">Id to search</param>
+        /// <returns>The count of bills</returns>
         public int GetBillsByYear(int year, string id)
         {
             //Create datetimes with the range of dates for the year
@@ -35,26 +32,23 @@ namespace billyDotNet
             DateTime finish = new DateTime(year, 12, 1);
 
             //If the start date is after the finish date thow an exception
-            if(start > finish)
+            if (start > finish)
             {
                 throw new Exception("The end date must be greater than the start date.");
             }
 
-
             int result = 0;
-            
+
             //loop all the months in the year, we can exclude all those months that are in a future date
-            while(start <= finish)// && start < DateTime.Now)
+            while (start <= finish)// && start < DateTime.Now)
             {
                 int bills = GetBillsByMonth(id, start.Year, start.Month);
                 result += bills;
-                
+
                 start = start.AddMonths(1);
             }
 
             return result;
-
-
         }
 
         /// <summary>
@@ -76,7 +70,7 @@ namespace billyDotNet
             int bills = 0;
 
             //Check if is a number what we fetched
-            if(!int.TryParse(serviceResponse, out bills))
+            if (!int.TryParse(serviceResponse, out bills))
             {
                 //If it is not a number we now try fetching the data by fortnights
                 bills = GetMonthlyBillsByFortnights(id, year, month);
@@ -105,7 +99,6 @@ namespace billyDotNet
             //Then the second
             bills += GetBillsByFortnight(id, year, month, 2);
 
-
             return bills;
         }
 
@@ -127,7 +120,7 @@ namespace billyDotNet
 
             string serviceResponse = billyRepository.GetBillsByDate(id, start, end);
 
-            if(!int.TryParse(serviceResponse, out bills))
+            if (!int.TryParse(serviceResponse, out bills))
             {
                 //If the service response is not a number now we will try requesting the data by weeks
                 bills = GetBillsByWeek(id, year, month, start.Day, end.Day);
@@ -148,7 +141,6 @@ namespace billyDotNet
 
         public int GetBillsByWeek(string id, int year, int month, int startDay, int endDay)
         {
-
             //Get a list of weeks according to the provided days
             List<Week> weeks = DateHelper.GetWeeksInAMonth(year, month, startDay, endDay);
 
@@ -160,7 +152,7 @@ namespace billyDotNet
                 string serviceResponse = billyRepository.GetBillsByDate(id, week.Start, week.End);
                 int weeklyBills = 0;
 
-                if(int.TryParse(serviceResponse, out weeklyBills))
+                if (int.TryParse(serviceResponse, out weeklyBills))
                 {
                     //if the fetched data is a number, add it to the bills
                     bills += weeklyBills;
@@ -168,7 +160,7 @@ namespace billyDotNet
                 else
                 {
                     //if not now we have to make the requests by day :(
-                    while(week.Start <= week.End)
+                    while (week.Start <= week.End)
                     {
                         bills += GetBillsByDay(id, year, month, week.Start.Day);
                         week.Start = week.Start.AddDays(1);
@@ -195,7 +187,7 @@ namespace billyDotNet
             //We send the same date,
             string serviceResponse = billyRepository.GetBillsByDate(id, date, date);
             int bills = 0;
-            if(!int.TryParse(serviceResponse, out bills))
+            if (!int.TryParse(serviceResponse, out bills))
             {
                 //If the response is not a number give up x_x
                 throw new Exception("The provided id contains too much bills :(");

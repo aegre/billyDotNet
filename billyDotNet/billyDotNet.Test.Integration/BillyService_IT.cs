@@ -1,18 +1,12 @@
 ﻿using billyDotNet.Repository;
 using billyDotNet.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace billyDotNet.Test.Integration
 {
     [TestClass]
     public class BillyService_IT
     {
-
         private BillyService service;
 
         [TestInitialize]
@@ -25,11 +19,9 @@ namespace billyDotNet.Test.Integration
         [TestMethod]
         public void TestGetBillsByYear()
         {
-
             string id = "3fadd6a2-cee7-4b93-8763-f5402ce70d30";
 
             int result = service.GetBillsByYear(2017, id);
-            
         }
 
         [TestMethod]
@@ -38,19 +30,16 @@ namespace billyDotNet.Test.Integration
             string id = "3fadd6a2-cee7-4b93-8763-f5402ce70d30";
 
             int result = service.GetBillsByWeek(id, 2017, 1, 1, 15);
-            Assert.AreEqual(78,result);
-
+            Assert.AreEqual(78, result);
         }
 
-        
         [TestMethod]
         public void TestGetBillsByFortnight()
         {
             string id = "3fadd6a2-cee7-4b93-8763-f5402ce70d30";
 
-            int result = service.GetBillsByFortnight(id,2017, 1,1);
+            int result = service.GetBillsByFortnight(id, 2017, 1, 1);
             Assert.AreEqual(78, result);
-
         }
 
         [TestMethod]
@@ -60,7 +49,6 @@ namespace billyDotNet.Test.Integration
 
             int result = service.GetBillsByMonth(id, 2017, 1);
             Assert.AreEqual(150, result);
-
         }
 
         [TestMethod]
@@ -70,7 +58,6 @@ namespace billyDotNet.Test.Integration
 
             int result = service.GetMonthlyBillsByFortnights(id, 2017, 1);
             Assert.AreEqual(150, result);
-
         }
 
         [TestMethod]
@@ -78,13 +65,8 @@ namespace billyDotNet.Test.Integration
         {
             string id = "3fadd6a2-cee7-4b93-8763-f5402ce70d30";
 
-            int result = service.GetBillsByDay(id, 2017, 1,1);
+            int result = service.GetBillsByDay(id, 2017, 1, 1);
             Assert.AreEqual(2, result);
-
         }
-
-
-
-
     }
 }

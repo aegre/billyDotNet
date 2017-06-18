@@ -1,13 +1,9 @@
 ﻿using billyDotNet.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace billyDotNet.Repository
 {
-    
     /// <summary>
     /// Data repository
     /// </summary>
@@ -35,8 +31,7 @@ namespace billyDotNet.Repository
         /// <returns>The string containing the service response</returns>
         public string GetBillsByDate(string id, DateTime start, DateTime finish)
         {
-
-            //Create the object to be sent 
+            //Create the object to be sent
             Dictionary<string, string> dataObject = new Dictionary<string, string>()
             {
                 {"id", id },
