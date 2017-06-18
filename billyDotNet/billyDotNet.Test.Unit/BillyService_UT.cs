@@ -1,12 +1,7 @@
 ﻿using billyDotNet.Repository;
-using billyDotNet.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace billyDotNet.Test.Unit
 {
@@ -15,7 +10,7 @@ namespace billyDotNet.Test.Unit
     {
         private IBillyRepository repository;
 
-        private  Mock<IBillyRepository> repositoryMock = new Mock<IBillyRepository>();
+        private Mock<IBillyRepository> repositoryMock = new Mock<IBillyRepository>();
 
         private BillyService service;
 
@@ -40,7 +35,6 @@ namespace billyDotNet.Test.Unit
 
             //Verify method call
             repositoryMock.Verify(x => x.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Once);
-
         }
 
         [TestMethod]
@@ -69,10 +63,8 @@ namespace billyDotNet.Test.Unit
 
             Assert.AreEqual(91, service.GetBillsByFortnight("", 2017, 1, 1));
 
-
             //Verify method call
             repositoryMock.Verify(x => x.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Once);
-
         }
 
         [TestMethod]
@@ -89,7 +81,6 @@ namespace billyDotNet.Test.Unit
 
             //Verify method call
             repositoryMock.Verify(x => x.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Exactly(3));
-
         }
 
         [TestMethod]
@@ -101,7 +92,6 @@ namespace billyDotNet.Test.Unit
             repository.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(expectedResult);
 
             Assert.AreEqual(91, service.GetBillsByMonth("", 2017, 1));
-
 
             //Verify method call
             repositoryMock.Verify(x => x.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Once);
@@ -121,7 +111,6 @@ namespace billyDotNet.Test.Unit
 
             //Verify method call
             repositoryMock.Verify(x => x.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Exactly(4));
-
         }
 
         [TestMethod]
@@ -132,8 +121,7 @@ namespace billyDotNet.Test.Unit
             repositoryMock.Setup(repository =>
             repository.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(expectedResult);
 
-            Assert.AreEqual(91 * 3, service.GetBillsByWeek("",2017,1,1,15));
-
+            Assert.AreEqual(91 * 3, service.GetBillsByWeek("", 2017, 1, 1, 15));
 
             //Verify method call
             repositoryMock.Verify(x => x.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Exactly(3));
@@ -150,7 +138,7 @@ namespace billyDotNet.Test.Unit
             Exception e = Assert.ThrowsException<Exception>(() => service.GetBillsByWeek("", 2017, 1, 1, 15));
 
             Assert.AreEqual("The provided id contains too much bills :(", e.Message);
-            
+
             //Verify method call
             repositoryMock.Verify(x => x.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Exactly(2));
         }
@@ -164,7 +152,6 @@ namespace billyDotNet.Test.Unit
             repository.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(expectedResult);
 
             Assert.AreEqual(91 * 12, service.GetBillsByYear(2017, ""));
-
 
             //Verify method call
             repositoryMock.Verify(x => x.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Exactly(12));
@@ -185,6 +172,5 @@ namespace billyDotNet.Test.Unit
             //Verify method call
             repositoryMock.Verify(x => x.GetBillsByDate(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Exactly(4));
         }
-
     }
 }

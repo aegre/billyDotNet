@@ -1,17 +1,13 @@
 ﻿using billyDotNet.Repository;
 using billyDotNet.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace billyDotNet
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             RequesterHelper rHelper = new RequesterHelper();
 
@@ -23,10 +19,8 @@ namespace billyDotNet
             Console.WriteLine($"id: {id}");
             Console.WriteLine($"Facturas: {service.GetBillsByYear(2017, id)}");
 
-
             do
             {
-
                 //Ask for another id or an enter
                 Console.WriteLine("Ingresa otro id para buscar de nuevo, presiona enter para salir.");
                 id = Console.ReadLine();
@@ -39,15 +33,14 @@ namespace billyDotNet
 
                         Console.WriteLine($"id: {id}");
                         Console.WriteLine($"Facturas: {count}");
-
                     }
-                    catch(WebException we)
+                    catch (WebException we)
                     {
                         HttpWebResponse response = we.Response as HttpWebResponse;
 
-                        if(response != null)
+                        if (response != null)
                         {
-                            if(response.StatusCode == HttpStatusCode.BadRequest)
+                            if (response.StatusCode == HttpStatusCode.BadRequest)
                             {
                                 Console.WriteLine("Es posible que el id que ingresó no exista. Por favor intente de nuevo.");
                             }
@@ -60,16 +53,13 @@ namespace billyDotNet
                         {
                             Console.WriteLine($"Una excepción ocurrió!{we.Message}");
                         }
-
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine($"Una excepción ocurrió!{e.Message}");
                     }
                 }
-                
             } while (!string.IsNullOrEmpty(id));
-            
         }
     }
 }

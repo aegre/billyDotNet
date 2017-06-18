@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace billyDotNet.Utils
 {
@@ -18,6 +14,5 @@ namespace billyDotNet.Utils
         /// <param name="getVariables">The get variables.</param>
         /// <returns>The result returned by the server</returns>
         string MakeGetRequest(string destinationURL, Dictionary<string, string> getVariables);
-
     }
 }

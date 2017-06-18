@@ -1,21 +1,20 @@
-﻿using System;
+﻿using billyDotNet.Repository;
+using billyDotNet.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using billyDotNet.Utils;
+using System;
 using System.Collections.Generic;
-using billyDotNet.Repository;
 
 namespace billyDotNet.Test.Unit
 {
     [TestClass]
     public class BillyRepository_UT
     {
-
         private IRequesterHelper requesterHelper;
 
         private Mock<IRequesterHelper> requesterHelperMock;
 
-        private BillyRepository repository; 
+        private BillyRepository repository;
 
         [TestInitialize]
         public void Setup()
@@ -42,7 +41,6 @@ namespace billyDotNet.Test.Unit
 
             //Verify method call
             requesterHelperMock.Verify(x => x.MakeGetRequest(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>()), Times.Once);
-
         }
     }
 }
