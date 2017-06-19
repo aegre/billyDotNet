@@ -9,6 +9,7 @@ namespace billyDotNet
     public class BillyService
     {
         private IBillyRepository billyRepository;
+        public int RequestCount { get; set; }
 
         /// <summary>
         /// Creates a new instance of the billy service
@@ -66,7 +67,7 @@ namespace billyDotNet
 
             //make a first try sending the whole month
             string serviceResponse = billyRepository.GetBillsByDate(id, start, end);
-
+            RequestCount++;
             int bills = 0;
 
             //Check if is a number what we fetched
@@ -119,7 +120,7 @@ namespace billyDotNet
             int bills = 0;
 
             string serviceResponse = billyRepository.GetBillsByDate(id, start, end);
-
+            RequestCount++;
             if (!int.TryParse(serviceResponse, out bills))
             {
                 //If the service response is not a number now we will try requesting the data by weeks
@@ -151,7 +152,7 @@ namespace billyDotNet
                 //Foreach week, fetch the data
                 string serviceResponse = billyRepository.GetBillsByDate(id, week.Start, week.End);
                 int weeklyBills = 0;
-
+                RequestCount++;
                 if (int.TryParse(serviceResponse, out weeklyBills))
                 {
                     //if the fetched data is a number, add it to the bills
@@ -186,6 +187,7 @@ namespace billyDotNet
 
             //We send the same date,
             string serviceResponse = billyRepository.GetBillsByDate(id, date, date);
+            RequestCount++;
             int bills = 0;
             if (!int.TryParse(serviceResponse, out bills))
             {

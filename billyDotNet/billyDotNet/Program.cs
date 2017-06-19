@@ -18,6 +18,7 @@ namespace billyDotNet
             string id = "3fadd6a2-cee7-4b93-8763-f5402ce70d30";
             Console.WriteLine($"id: {id}");
             Console.WriteLine($"Facturas: {service.GetBillsByYear(2017, id)}");
+            Console.WriteLine($"Numero de peticiones: {service.RequestCount}");
 
             do
             {
@@ -29,10 +30,13 @@ namespace billyDotNet
                 {
                     try
                     {
+                        //Reset the request count
+                        service.RequestCount = 0;
                         int count = service.GetBillsByYear(2017, id);
 
                         Console.WriteLine($"id: {id}");
                         Console.WriteLine($"Facturas: {count}");
+                        Console.WriteLine($"Numero de peticiones: {service.RequestCount}");
                     }
                     catch (WebException we)
                     {
